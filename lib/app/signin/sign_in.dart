@@ -1,8 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:time_tracker/app/components/customSignInButton.dart';
 import 'package:time_tracker/app/components/customSocialSignInButton.dart';
+import 'package:time_tracker/services/auth.dart';
 
 class SignInPage extends StatelessWidget {
+  const SignInPage({Key? key, required this.auth, required this.onSignIn})
+      : super(key: key);
+  final void Function(User?) onSignIn;
+  final AuthBase auth;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +84,7 @@ class SignInPage extends StatelessWidget {
             text: "Go Anonymous",
             color: Colors.lime[300],
             textColor: Colors.black,
-            onPressed: _signInFacebook,
+            onPressed: _signInAnonymously,
           ),
         ],
       ),
@@ -87,4 +94,13 @@ class SignInPage extends StatelessWidget {
   void _signInWithGoogle() {}
 
   void _signInFacebook() {}
+
+  Future<void> _signInAnonymously() async {
+    try {
+      final user = await auth.signInAnonymously();
+      onSignIn(user);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
