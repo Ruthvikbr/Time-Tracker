@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'dart:developer';
@@ -13,6 +12,10 @@ abstract class AuthBase {
   Stream<User?> authStateChanges();
 
   Future<User?> signInWithGoogle();
+
+  Future<User?> signInWithEmailAndPassword(String email, String password);
+
+  Future<User?> createUserWithEmailAndPassword(String email, String password);
 }
 
 class Auth implements AuthBase {
@@ -72,5 +75,25 @@ class Auth implements AuthBase {
         message: "Sign in aborted by user",
       );
     }
+  }
+
+  @override
+  Future<User?> signInWithEmailAndPassword(
+      String email, String password) async {
+    final userCredential = await _firebaseAuthInstance.signInWithCredential(
+      EmailAuthProvider.credential(email: email, password: password),
+    );
+    return userCredential.user;
+  }
+
+  @override
+  Future<User?> createUserWithEmailAndPassword(
+      String email, String password) async {
+    final userCredential =
+        await _firebaseAuthInstance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return userCredential.user;
   }
 }
