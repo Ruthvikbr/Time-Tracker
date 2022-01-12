@@ -26,6 +26,6 @@ class CustomSocialSignInButton extends CustomElevatedButton {
           ),
           color: color,
           borderRadius: 4.0,
-          onPressed: () {},
+          onPressed: onPressed,
         );
 }
