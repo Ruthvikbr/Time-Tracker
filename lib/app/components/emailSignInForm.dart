@@ -1,13 +1,15 @@
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:time_tracker/app/components/formSubmitButton.dart';
+import 'package:time_tracker/app/components/showAlertDialog.dart';
 import 'package:time_tracker/services/auth.dart';
 import 'package:time_tracker/services/validators.dart';
 
 enum EmailSignInFormType { signIn, signUp }
 
 class EmailSignInForm extends StatefulWidget with EmailAndPasswordValidators {
-  EmailSignInForm({Key? key, required this.auth}) : super(key: key);
-  final AuthBase auth;
 
   @override
   _EmailSignInFormState createState() => _EmailSignInFormState();
@@ -47,14 +49,18 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     });
 
     try {
+      final auth = Provider.of<AuthBase>(context,listen: false);
       if (_formType == EmailSignInFormType.signIn) {
-        await widget.auth.signInWithEmailAndPassword(_email, _password);
+        await auth.signInWithEmailAndPassword(_email, _password);
       } else {
-        await widget.auth.createUserWithEmailAndPassword(_email, _password);
+        await auth.createUserWithEmailAndPassword(_email, _password);
       }
       Navigator.of(context).pop();
     } catch (e) {
-      print(e.toString());
+      showAlertDialog(context,
+          title: "Something went wrong",
+          content: "Please provide valid user credentials",
+          defaultActionText: "Ok");
     } finally {
       setState(() {
         _isLoading = false;
