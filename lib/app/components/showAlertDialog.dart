@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 Future<dynamic> showAlertDialog(
   BuildContext context, {
   required String title,
-  required String content,
+  required String? content,
   required String defaultActionText,
   String? cancelActionText,
 }) {
@@ -16,7 +16,7 @@ Future<dynamic> showAlertDialog(
         builder: (context) {
           return AlertDialog(
             title: Text(title),
-            content: Text(content),
+            content: Text(content!),
             actions: [
               if (cancelActionText != null)
                 TextButton(
@@ -36,7 +36,7 @@ Future<dynamic> showAlertDialog(
         builder: (context) {
           return CupertinoAlertDialog(
             title: Text(title),
-            content: Text(content),
+            content: Text(content!),
             actions: [
               if (cancelActionText != null)
                 CupertinoDialogAction(

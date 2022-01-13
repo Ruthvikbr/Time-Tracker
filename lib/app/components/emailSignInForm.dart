@@ -1,16 +1,15 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time_tracker/app/components/formSubmitButton.dart';
-import 'package:time_tracker/app/components/showAlertDialog.dart';
+import 'package:time_tracker/app/components/showExceptionAlertDialog.dart';
 import 'package:time_tracker/services/auth.dart';
 import 'package:time_tracker/services/validators.dart';
 
 enum EmailSignInFormType { signIn, signUp }
 
 class EmailSignInForm extends StatefulWidget with EmailAndPasswordValidators {
-
   @override
   _EmailSignInFormState createState() => _EmailSignInFormState();
 }
@@ -42,6 +41,14 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   bool _submitted = false;
   bool _isLoading = false;
 
+  void dispose(){
+    _emailController.dispose();
+    _passwordController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
+
   void _onSubmit() async {
     setState(() {
       _submitted = true;
@@ -49,18 +56,19 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     });
 
     try {
-      final auth = Provider.of<AuthBase>(context,listen: false);
+      final auth = Provider.of<AuthBase>(context, listen: false);
       if (_formType == EmailSignInFormType.signIn) {
         await auth.signInWithEmailAndPassword(_email, _password);
       } else {
         await auth.createUserWithEmailAndPassword(_email, _password);
       }
       Navigator.of(context).pop();
-    } catch (e) {
-      showAlertDialog(context,
-          title: "Something went wrong",
-          content: "Please provide valid user credentials",
-          defaultActionText: "Ok");
+    } on FirebaseAuthException catch (e) {
+      showExceptionAlertDialog(
+        context,
+        title: "Something went wrong",
+        exception: e,
+      );
     } finally {
       setState(() {
         _isLoading = false;
