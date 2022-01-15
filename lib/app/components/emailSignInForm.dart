@@ -7,7 +7,7 @@ import 'package:time_tracker/app/components/formSubmitButton.dart';
 import 'package:time_tracker/app/components/showExceptionAlertDialog.dart';
 import 'package:time_tracker/services/auth.dart';
 
-import '../email_sign_in_model.dart';
+import '../model/email_sign_in_model.dart';
 
 class EmailSignInForm extends StatefulWidget {
   EmailSignInForm({Key? key, required this.bloc}) : super(key: key);
@@ -114,9 +114,6 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   }
 
   TextField _buildEmailTextField(EmailSignInModel? model) {
-    bool showErrorText = model != null &&
-        model.submitted &&
-        !model.emailValidator.isValid(model.email);
     return TextField(
       controller: _emailController,
       decoration: InputDecoration(
