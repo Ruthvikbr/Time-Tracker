@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:time_tracker/app/components/emailSignInForm.dart';
 
 class EmailSignIn extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,9 +13,7 @@ class EmailSignIn extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Card(
-            child: EmailSignInForm(
-
-            ),
+            child: EmailSignInForm.create(context),
           ),
         ),
       ),
@@ -24,5 +21,4 @@ class EmailSignIn extends StatelessWidget {
       resizeToAvoidBottomInset: true,
     );
   }
-
 }
