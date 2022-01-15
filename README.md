@@ -1,16 +1,13 @@
-# time_tracker
+# *Time tracker*
 
-Time tracker
+A flutter app to keep track of tasks of the user. The app implements the following concepts - 
 
-## Getting Started
+- Flutter 2.0 (Supports null safety)
+- BLoC state management
+- Firebase Auth - Social sign in, email based sign up and sign in, Anonymous sign in
 
-This project is a starting point for a Flutter application.
+## To-Do
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Bottom navigation
+- Dashboard setup
+- Add,update and delete tasks
