@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:time_tracker/app/components/jobListTile.dart';
 import 'package:time_tracker/app/components/showAlertDialog.dart';
 import 'package:provider/provider.dart';
-import 'package:time_tracker/app/components/showExceptionAlertDialog.dart';
+import 'package:time_tracker/app/home/add_or_edit_job_page.dart';
 import 'package:time_tracker/app/model/job.dart';
 import 'package:time_tracker/services/auth.dart';
 import 'package:time_tracker/services/database.dart';
@@ -49,7 +49,10 @@ class JobsPage extends StatelessWidget {
       body: _buildContents(context),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _createJob(context),
+        onPressed: () => AddOrEditJobPage.navigate(
+          context: context,
+          job: null,
+        ),
       ),
     );
   }
@@ -62,7 +65,15 @@ class JobsPage extends StatelessWidget {
           if (snapshot.hasData && snapshot.data != null) {
             final List<Job>? jobs = snapshot.data;
             if (jobs != null) {
-              final children = jobs.map((job) => Text(job.name)).toList();
+              final children = jobs
+                  .map((job) => JobListTile(
+                        job: job,
+                        onPress: () => AddOrEditJobPage.navigate(
+                          context: context,
+                          job: job,
+                        ),
+                      ))
+                  .toList();
               return ListView(
                 children: children,
               );
@@ -71,7 +82,7 @@ class JobsPage extends StatelessWidget {
                 child: Text("You don't have any open jobs"),
               );
             }
-          }else if(snapshot.hasError) {
+          } else if (snapshot.hasError) {
             return Center(
               child: Text("Something went wrong"),
             );
@@ -81,21 +92,5 @@ class JobsPage extends StatelessWidget {
             );
           }
         });
-  }
-
-  Future<void> _createJob(BuildContext context) async {
-    try {
-      final database = Provider.of<Database>(context, listen: false);
-      await database.createJob(Job(
-        name: "Reading",
-        ratePerHour: 20,
-      ));
-    } on FirebaseException catch (e) {
-      showExceptionAlertDialog(
-        context,
-        title: "Operation failed",
-        exception: e,
-      );
-    }
   }
 }
