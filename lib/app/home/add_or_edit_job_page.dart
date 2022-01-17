@@ -16,7 +16,7 @@ class AddOrEditJobPage extends StatefulWidget {
 
   static Future<void> navigate(
       {required BuildContext context,required Database database, Job? job}) async {
-    await Navigator.of(context).push(MaterialPageRoute(
+    await Navigator.of(context,rootNavigator: true).push(MaterialPageRoute(
       builder: (context) => AddOrEditJobPage(
         database: database,
         job: job,
