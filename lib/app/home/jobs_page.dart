@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:time_tracker/app/components/emptyListContent.dart';
 import 'package:time_tracker/app/components/jobListTile.dart';
 import 'package:time_tracker/app/components/listItemsBuilder.dart';
 import 'package:time_tracker/app/components/showAlertDialog.dart';
 import 'package:provider/provider.dart';
 import 'package:time_tracker/app/components/showExceptionAlertDialog.dart';
 import 'package:time_tracker/app/home/add_or_edit_job_page.dart';
+import 'package:time_tracker/app/home/job_entries/job_entries_page.dart';
 import 'package:time_tracker/app/model/job.dart';
 import 'package:time_tracker/services/auth.dart';
 import 'package:time_tracker/services/database.dart';
@@ -56,6 +56,7 @@ class JobsPage extends StatelessWidget {
         onPressed: () => AddOrEditJobPage.navigate(
           context: context,
           job: null,
+          database: Provider.of<Database>(context, listen: false),
         ),
       ),
     );
@@ -77,8 +78,7 @@ class JobsPage extends StatelessWidget {
                   onDismissed: (direction) => _deleteJob(context, job),
                   child: JobListTile(
                     job: job,
-                    onPress: () =>
-                        AddOrEditJobPage.navigate(context: context, job: job),
+                    onPress: () => JobEntriesPage.show(context, job),
                   ),
                 ));
       },
