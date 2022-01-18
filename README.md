@@ -13,9 +13,6 @@ A flutter app to keep track of tasks of the user. The app implements the followi
 - Add update and delete Job entries
 - Unit tests
 - Account screen
-
-## To-Do
-
 - Widget Tests
 
 ## Screenshots
