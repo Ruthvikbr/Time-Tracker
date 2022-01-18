@@ -20,3 +20,11 @@ A flutter app to keep track of tasks of the user. The app implements the followi
 
 - Widget Tests
 
+## Screenshots
+
+<p align="center">
+  <br>
+  <img src="https://user-images.githubusercontent.com/37804253/149907563-881d097e-bfdf-4080-b7d0-b7a89ef3ad41.png" width="250" height="520">
+  <img src="https://user-images.githubusercontent.com/37804253/149907581-5b4157df-0b9c-485d-a15a-6ee476d91682.png" width="250" height="520">
+</p> 
+
