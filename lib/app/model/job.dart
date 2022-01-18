@@ -39,6 +39,9 @@ class Job {
     if (runtimeType != other.runtimeType) {
       return false;
     }
-    return other is Job;
+    return other is Job &&
+        other.id == id &&
+        other.name == name &&
+        other.ratePerHour == ratePerHour;
   }
 }

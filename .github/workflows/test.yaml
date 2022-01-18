@@ -12,8 +12,8 @@ jobs:
         with:
           channel: stable
 
-      - name: 'Analyze'
-        run: flutter pub get && flutter analyze .
+      - name: 'Setup'
+        run: flutter pub get
 
       - name: 'Format'
         run: flutter format lib/** --set-exit-if-changed
