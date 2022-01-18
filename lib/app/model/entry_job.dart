@@ -1,5 +1,3 @@
-
-
 import 'package:time_tracker/app/model/entry.dart';
 import 'package:time_tracker/app/model/job.dart';
 

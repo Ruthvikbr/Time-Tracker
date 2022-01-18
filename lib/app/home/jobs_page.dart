@@ -10,7 +10,6 @@ import 'package:time_tracker/app/model/job.dart';
 import 'package:time_tracker/services/database.dart';
 
 class JobsPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

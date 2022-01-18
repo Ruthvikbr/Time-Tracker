@@ -10,29 +10,28 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthBase>(context,listen: false);
+    final auth = Provider.of<AuthBase>(context, listen: false);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Account"),
-          actions: <Widget>[
-            TextButton(
-              child: Text(
-                "Logout",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.0,
-                ),
-              ),
-              onPressed: () => _confirmSignOut(context),
+        appBar: AppBar(
+      title: Text("Account"),
+      actions: <Widget>[
+        TextButton(
+          child: Text(
+            "Logout",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16.0,
             ),
-          ],
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(130.0),
-          child: _buildContent(auth.currentUser),
+          ),
+          onPressed: () => _confirmSignOut(context),
         ),
-      )
-    );
+      ],
+      bottom: PreferredSize(
+        preferredSize: Size.fromHeight(130.0),
+        child: _buildContent(auth.currentUser),
+      ),
+    ));
   }
 
   Future<void> _confirmSignOut(BuildContext context) async {
@@ -58,17 +57,15 @@ class AccountPage extends StatelessWidget {
   Widget _buildContent(User? currentUser) {
     return Column(
       children: [
-        Avatar(
-          photoUrl: currentUser!.photoURL,
-          radius:50.0
+        Avatar(photoUrl: currentUser!.photoURL, radius: 50.0),
+        SizedBox(
+          height: 8,
         ),
-        SizedBox(height: 8,),
-        if(currentUser.displayName!=null)
+        if (currentUser.displayName != null)
           Text(
             currentUser.displayName ?? "",
             style: TextStyle(color: Colors.white),
           ),
-
       ],
     );
   }

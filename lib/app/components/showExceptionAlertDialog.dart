@@ -10,8 +10,8 @@ Future<void> showExceptionAlertDialog(
     showAlertDialog(context,
         title: title, content: _message(exception), defaultActionText: "Ok");
 
-String? _message(Exception exception){
-  if(exception is FirebaseException){
+String? _message(Exception exception) {
+  if (exception is FirebaseException) {
     return exception.message;
   }
   return exception.toString();

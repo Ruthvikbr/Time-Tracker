@@ -1,4 +1,3 @@
-
 import '../app/model/entry_job.dart';
 
 class JobDetails {
@@ -44,7 +43,9 @@ class DailyJobsDetails {
     List<DailyJobsDetails> list = [];
     for (var date in byDate.keys) {
       final entriesByDate = byDate[date];
-      final byJob =entriesByDate!=null ?  _jobsDetails(entriesByDate) : _jobsDetails(<EntryJob> []) ;
+      final byJob = entriesByDate != null
+          ? _jobsDetails(entriesByDate)
+          : _jobsDetails(<EntryJob>[]);
       list.add(DailyJobsDetails(date: date, jobsDetails: byJob));
     }
     return list.toList();

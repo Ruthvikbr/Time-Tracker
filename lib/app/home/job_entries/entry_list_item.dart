@@ -3,7 +3,6 @@ import 'package:time_tracker/app/model/entry.dart';
 import 'package:time_tracker/app/model/job.dart';
 import 'package:time_tracker/services/format.dart';
 
-
 class EntryListItem extends StatelessWidget {
   const EntryListItem({
     required this.entry,
@@ -77,7 +76,7 @@ class EntryListItem extends StatelessWidget {
 
 class DismissibleEntryListItem extends StatelessWidget {
   const DismissibleEntryListItem({
-   required this.key,
+    required this.key,
     required this.entry,
     required this.job,
     required this.onDismissed,

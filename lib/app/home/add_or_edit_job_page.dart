@@ -15,8 +15,10 @@ class AddOrEditJobPage extends StatefulWidget {
   final Job? job;
 
   static Future<void> navigate(
-      {required BuildContext context,required Database database, Job? job}) async {
-    await Navigator.of(context,rootNavigator: true).push(MaterialPageRoute(
+      {required BuildContext context,
+      required Database database,
+      Job? job}) async {
+    await Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
       builder: (context) => AddOrEditJobPage(
         database: database,
         job: job,
@@ -130,7 +132,7 @@ class _AddOrEditJobPageState extends State<AddOrEditJobPage> {
       try {
         final jobs = await widget.database.jobStreams().first;
         final allNames = jobs.map((job) => job.name).toList();
-        if(widget.job!=null){
+        if (widget.job != null) {
           allNames.remove(widget.job!.name);
         }
         if (allNames.contains(_name)) {
@@ -142,10 +144,7 @@ class _AddOrEditJobPageState extends State<AddOrEditJobPage> {
           );
         } else {
           final id = widget.job?.id ?? documentIdFromCurrentString();
-          final job = Job(
-              id: id,
-              name: _name,
-              ratePerHour: _ratePerHour);
+          final job = Job(id: id, name: _name, ratePerHour: _ratePerHour);
           await widget.database.createOrUpdateJob(job);
           Navigator.of(context).pop();
         }

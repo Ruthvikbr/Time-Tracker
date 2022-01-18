@@ -72,6 +72,4 @@ void main() {
       expect(Format.currency(0), "");
     });
   });
-
-
 }

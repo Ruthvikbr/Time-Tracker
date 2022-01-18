@@ -1,4 +1,3 @@
-
 class Entry {
   Entry({
     required this.id,

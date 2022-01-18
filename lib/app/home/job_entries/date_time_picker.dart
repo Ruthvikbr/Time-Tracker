@@ -7,7 +7,7 @@ import 'package:time_tracker/services/format.dart';
 class DateTimePicker extends StatelessWidget {
   const DateTimePicker({
     Key? key,
-   required this.labelText,
+    required this.labelText,
     required this.selectedDate,
     required this.selectedTime,
     required this.selectDate,

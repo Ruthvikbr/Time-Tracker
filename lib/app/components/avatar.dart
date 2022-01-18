@@ -15,10 +15,7 @@ class Avatar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(
-          color: Colors.white,
-          width: 3.0
-        ),
+        border: Border.all(color: Colors.white, width: 3.0),
       ),
       child: CircleAvatar(
         radius: radius,
