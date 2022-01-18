@@ -1,8 +1,6 @@
-![](art/GitHubPreview.png)
-
 # *Time tracker*
 
-![Test cases](https://github.com/Ruthvikbr/Time-Tracker/workflows/CI%2FCD%20tests/badge.svg) 
+![Tests](https://github.com/Ruthvikbr/Time-Tracker/workflows/CI%2FCD%20tests/badge.svg) 
 
 A flutter app to keep track of tasks of the user. The app implements the following concepts - 
 

@@ -73,11 +73,6 @@ class JobEntriesPage extends StatelessWidget {
               ],
             ),
             body: _buildContent(context, jobData ?? job),
-            floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () => EntryPage.show(
-                  context: context, database: database, job: job),
-            ),
           );
         });
   }
